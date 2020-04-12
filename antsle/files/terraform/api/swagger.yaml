@@ -1,0 +1,4066 @@
+schemes:
+  - http
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  AntletSimple:
+    type: object
+    properties:
+      description:
+        type: string
+      antlet-num:
+        x-terraform-computed: true
+        type: integer
+        format: int64
+      ip:
+        x-terraform-computed: true
+        type: string
+      dtype:
+        x-terraform-computed: true
+        type: string
+      dname:
+        x-terraform-id: true
+        type: string
+      template:
+        type: string
+      compression:
+        type: string
+      state:
+        x-terraform-computed: true
+        type: string
+      ram:
+        type: integer
+        format: int64
+      zfs-quota:
+        x-terraform-computed: true
+        type: integer
+        format: int64
+      zpool-name:
+        x-terraform-computed: true
+        type: string
+      ram-display:
+        x-terraform-computed: true
+        type: string
+      zpool:
+        $ref: '#/definitions/AntletSimpleZpool'
+      uuid:
+        x-terraform-computed: true
+        type: string
+      autostart:
+        x-terraform-computed: true
+        type: boolean
+      storage-display:
+        x-terraform-computed: true
+        type: string
+      cpu:
+        type: integer
+        format: int64
+    additionalProperties: false
+    required:
+      - dname
+      - ram
+      - cpu
+  AntletSimpleZpool:
+    x-terraform-computed: true
+    type: object
+    properties:
+      name:
+        type: string
+      compression:
+        type: string
+      mountpoint:
+        type: string
+      capacity:
+        type: string
+      size:
+        type: string
+      health:
+        type: string
+      mounted:
+        type: boolean
+      'antsle:managed-origin':
+        type: string
+    additionalProperties: false
+    required:
+      - name
+      - compression
+      - mountpoint
+      - capacity
+      - size
+      - health
+      - mounted
+      - 'antsle:managed-origin'
+  AntletsSnapshot:
+    type: object
+    properties:
+      creation:
+        x-terraform-computed: true
+        type: string
+      zfs-path:
+        x-terraform-computed: true
+        type: string
+      logicalreferenced-display:
+        type: string
+      name:
+        x-terraform-id: true
+        type: string
+      origin-display:
+        type: string
+        x-nullable: true
+      antlet-name:
+        type: string
+      used-display:
+        x-terraform-computed: true
+        type: string
+      logicalreferenced:
+        x-terraform-computed: true
+        type: integer
+        format: int64
+      origin:
+        type: string
+        x-nullable: true
+      creation-display:
+        x-terraform-computed: true
+        type: string
+      used:
+        x-terraform-computed: true
+        type: integer
+        format: int64
+    additionalProperties: false
+    required:
+      - name
+  Body51373:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+    additionalProperties: false
+    required:
+      - username
+      - password
+  Body51374:
+    type: object
+    properties:
+      token:
+        type: string
+      pub-key:
+        type: string
+    additionalProperties: false
+    required:
+      - token
+      - pub-key
+  Body51376:
+    type: object
+    properties:
+      current-password:
+        type: string
+      new-password:
+        type: string
+      confirm-password:
+        type: string
+    additionalProperties: false
+    required:
+      - current-password
+      - new-password
+      - confirm-password
+  Body51377:
+    type: object
+    properties:
+      ssh-key:
+        type: string
+    additionalProperties: false
+    required:
+      - ssh-key
+  Body51378:
+    type: object
+    properties:
+      src-antlet:
+        $ref: '#/definitions/Body51378SrcAntlet'
+      dst-antlet:
+        $ref: '#/definitions/Body51378DstAntlet'
+    additionalProperties: false
+    required:
+      - src-antlet
+      - dst-antlet
+  Body51378DstAntlet:
+    type: object
+    properties:
+      dname:
+        type: string
+      compression:
+        type: string
+      zpool-name:
+        type: string
+      antlet-num:
+        type: integer
+        format: int64
+    additionalProperties: false
+    required:
+      - dname
+      - compression
+      - zpool-name
+      - antlet-num
+  Body51378SrcAntlet:
+    type: object
+    properties:
+      dname:
+        type: string
+      snapshot-name:
+        type: string
+    additionalProperties: false
+    required:
+      - dname
+      - snapshot-name
+  Body51379:
+    type: object
+    properties:
+      src-antlet:
+        type: string
+      dst-antsle:
+        type: string
+      vnics?:
+        type: boolean
+      node:
+        type: string
+    additionalProperties: false
+    required:
+      - src-antlet
+      - dst-antsle
+      - vnics?
+      - node
+  Body51380:
+    type: object
+    properties:
+      path:
+        type: string
+      dst-antlet: {}
+      vnics?:
+        type: boolean
+    additionalProperties: false
+    required:
+      - path
+      - dst-antlet
+      - vnics?
+  Body51381:
+    type: object
+    properties:
+      antlet-uuid:
+        type: string
+    additionalProperties: false
+    required:
+      - antlet-uuid
+  Body51382:
+    type: object
+    properties:
+      antlet-uuid:
+        type: string
+    additionalProperties: false
+    required:
+      - antlet-uuid
+  Body51383:
+    type: object
+    properties:
+      action:
+        type: string
+    additionalProperties: false
+    required:
+      - action
+  Body51384:
+    type: object
+    properties:
+      dns-servers:
+        type: string
+      default-interface-name:
+        type: string
+      proxy-url:
+        type: string
+      gateway:
+        type: string
+    additionalProperties: false
+    required:
+      - dns-servers
+      - default-interface-name
+      - proxy-url
+      - gateway
+  Body51385:
+    type: object
+    properties:
+      antlet-name:
+        type: string
+      page:
+        type: string
+    additionalProperties: false
+    required:
+      - antlet-name
+      - page
+  Body51386:
+    type: object
+    properties:
+      zpools:
+        type: array
+        items:
+          $ref: '#/definitions/Body51386Zpools'
+    additionalProperties: false
+    required:
+      - zpools
+  Body51386Zpools:
+    type: object
+    properties:
+      name:
+        type: string
+      compression:
+        type: string
+        enum:
+          - 'off'
+          - lz4
+    additionalProperties: false
+    required:
+      - name
+      - compression
+  Body51387:
+    type: object
+    properties:
+      service-name:
+        type: string
+      action:
+        type: string
+        enum:
+          - stop
+          - start
+          - restart
+    additionalProperties: false
+    required:
+      - service-name
+      - action
+  Body51388:
+    type: object
+    properties:
+      name:
+        type: string
+      status:
+        type: string
+      autostart:
+        type: boolean
+    additionalProperties: false
+    required:
+      - name
+      - status
+      - autostart
+  Body51389:
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      invite-emails:
+        type: string
+      message:
+        type: string
+    additionalProperties: false
+    required:
+      - name
+      - email
+      - invite-emails
+  Body51390:
+    type: object
+    properties:
+      email:
+        type: string
+    additionalProperties: false
+    required:
+      - email
+  Body51391:
+    type: object
+    properties:
+      token:
+        type: string
+    additionalProperties: false
+    required:
+      - token
+  Body51392:
+    type: object
+    properties:
+      analytics:
+        type: boolean
+    additionalProperties: false
+    required:
+      - analytics
+  Body51393:
+    type: object
+    properties:
+      version:
+        type: string
+    additionalProperties: false
+  Body51394:
+    type: object
+    properties:
+      version:
+        type: string
+    additionalProperties: false
+  Body51395:
+    type: object
+    properties:
+      first-name:
+        type: string
+      last-name:
+        type: string
+      email:
+        type: string
+      phone:
+        type: string
+      consideration:
+        type: string
+    additionalProperties: false
+    required:
+      - first-name
+      - last-name
+      - email
+      - phone
+      - consideration
+  Body51396:
+    type: object
+    properties:
+      bus:
+        type: string
+      device:
+        type: string
+    additionalProperties: false
+    required:
+      - bus
+      - device
+  Body51397:
+    type: object
+    properties:
+      bus:
+        type: string
+      device:
+        type: string
+    additionalProperties: false
+    required:
+      - bus
+      - device
+  Body51398:
+    type: object
+    properties:
+      zpool-name:
+        type: string
+      device:
+        type: string
+        enum:
+          - cdrom
+          - disk
+      bus:
+        type: string
+      image-filepath:
+        type: string
+    additionalProperties: false
+    required:
+      - zpool-name
+      - device
+      - bus
+      - image-filepath
+  Body51399:
+    type: object
+    properties:
+      nps: {}
+    additionalProperties: false
+    required:
+      - nps
+  Body51400:
+    type: object
+    properties:
+      antlet-name:
+        type: string
+    additionalProperties: false
+    required:
+      - antlet-name
+  Body51401:
+    type: object
+    properties:
+      antlet-name:
+        type: string
+    additionalProperties: false
+    required:
+      - antlet-name
+  Body51402:
+    type: object
+    properties:
+      antlet-name:
+        type: string
+      backend:
+        type: string
+      backup: {}
+      failed-backup: {}
+    additionalProperties: false
+    required:
+      - antlet-name
+      - backend
+      - backup
+  Body51403:
+    type: object
+    properties:
+      backup-id: {}
+      backup-body: {}
+    additionalProperties: false
+    required:
+      - backup-id
+  Body51404:
+    type: object
+    properties:
+      backup-id: {}
+      clone-info: {}
+      backup-body: {}
+    additionalProperties: false
+    required:
+      - backup-id
+  Body51405:
+    type: object
+    properties:
+      backup-id: {}
+      backup-body: {}
+    additionalProperties: false
+    required:
+      - backup-id
+  Body51406:
+    type: object
+    properties:
+      backup-id: {}
+      backup-body: {}
+    additionalProperties: false
+    required:
+      - backup-id
+  Response51412:
+    type: object
+    properties:
+      message:
+        type: string
+    additionalProperties: false
+    required:
+      - message
+  Response51413:
+    type: object
+    properties:
+      user:
+        type: string
+      hostname:
+        type: string
+    additionalProperties: false
+    required:
+      - user
+      - hostname
+  Response51414:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51417:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51420:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51421:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51422:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51424:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51425:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51427:
+    type: object
+    properties:
+      success:
+        type: boolean
+      antaid-instance:
+        $ref: '#/definitions/Response51427AntaidInstance'
+    additionalProperties: false
+    required:
+      - success
+  Response51427AntaidInstance:
+    type: object
+    properties:
+      host:
+        type: string
+      port:
+        type: string
+      sshport:
+        type: string
+    additionalProperties: false
+    required:
+      - host
+      - port
+      - sshport
+  Response51428:
+    type: object
+    properties:
+      success:
+        type: boolean
+    additionalProperties: false
+    required:
+      - success
+  Response51429Zpool:
+    x-terraform-computed: true
+    type: object
+    properties:
+      name:
+        type: string
+      compression:
+        type: string
+      mountpoint:
+        type: string
+      capacity:
+        type: string
+      size:
+        type: string
+      health:
+        type: string
+      mounted:
+        type: boolean
+      'antsle:managed-origin':
+        type: string
+    additionalProperties: false
+    required:
+      - name
+      - compression
+      - mountpoint
+      - capacity
+      - size
+      - health
+      - mounted
+      - 'antsle:managed-origin'
+  Response51431:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51435:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51437:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51439:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51441:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51443:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51444:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51446:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51447:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51449:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51450:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51452:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+      proxy-port:
+        type: integer
+        format: int64
+      vncdisplay-num:
+        type: integer
+        format: int64
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51453:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51455:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51456:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51458:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51459:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51461:
+    type: object
+    properties:
+      state:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - state
+  Response51462:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51465:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51467:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51468:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51470:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51471:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51472:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51473:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51474:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51475:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51476:
+    type: object
+    properties:
+      creation:
+        type: string
+      zfs-path:
+        type: string
+      logicalreferenced-display:
+        type: string
+      name:
+        x-terraform-id: true
+        type: string
+      origin-display:
+        type: string
+        x-nullable: true
+      used-display:
+        type: string
+      logicalreferenced:
+        type: integer
+        format: int64
+      origin:
+        type: string
+        x-nullable: true
+      creation-display:
+        type: string
+      used:
+        type: integer
+        format: int64
+    additionalProperties: false
+    required:
+      - creation
+      - zfs-path
+      - logicalreferenced-display
+      - name
+      - origin-display
+      - used-display
+      - logicalreferenced
+      - origin
+      - creation-display
+      - used
+  Response51477:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51479:
+    type: object
+    properties:
+      creation:
+        type: string
+      zfs-path:
+        type: string
+      logicalreferenced-display:
+        type: string
+      name:
+        x-terraform-id: true
+        type: string
+      origin-display:
+        type: string
+        x-nullable: true
+      used-display:
+        type: string
+      logicalreferenced:
+        type: integer
+        format: int64
+      origin:
+        type: string
+        x-nullable: true
+      creation-display:
+        type: string
+      used:
+        type: integer
+        format: int64
+    additionalProperties: false
+    required:
+      - creation
+      - zfs-path
+      - logicalreferenced-display
+      - name
+      - origin-display
+      - used-display
+      - logicalreferenced
+      - origin
+      - creation-display
+      - used
+  Response51480:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51482:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51483:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51485:
+    type: object
+    properties:
+      creation:
+        type: string
+      zfs-path:
+        type: string
+      logicalreferenced-display:
+        type: string
+      name:
+        x-terraform-id: true
+        type: string
+      origin-display:
+        type: string
+        x-nullable: true
+      used-display:
+        type: string
+      logicalreferenced:
+        type: integer
+        format: int64
+      origin:
+        type: string
+        x-nullable: true
+      creation-display:
+        type: string
+      used:
+        type: integer
+        format: int64
+    additionalProperties: false
+    required:
+      - creation
+      - zfs-path
+      - logicalreferenced-display
+      - name
+      - origin-display
+      - used-display
+      - logicalreferenced
+      - origin
+      - creation-display
+      - used
+  Response51486:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51488:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51490:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51492:
+    type: object
+    properties:
+      key:
+        type: string
+      label:
+        type: string
+      description:
+        type: string
+      tpl-url:
+        type: string
+      xml-url:
+        type: string
+      template-size-label:
+        type: string
+    additionalProperties: false
+    required:
+      - key
+      - label
+      - description
+      - tpl-url
+      - template-size-label
+  Response51493:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51495:
+    type: object
+    properties:
+      dns-servers:
+        type: string
+      default-interface-name:
+        type: string
+        x-nullable: true
+      proxy-url:
+        type: string
+      gateway:
+        type: string
+        x-nullable: true
+    additionalProperties: false
+    required:
+      - dns-servers
+      - default-interface-name
+      - proxy-url
+      - gateway
+  Response51497:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51498:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51500:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51501:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51504:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51506:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51507:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51509:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51510:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51512:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51513:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51515:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51516:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51518:
+    type: object
+    properties:
+      name:
+        type: string
+      status:
+        type: string
+      autostart:
+        type: boolean
+    additionalProperties: false
+    required:
+      - name
+      - status
+      - autostart
+  Response51519:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51521:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51522:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51524:
+    type: object
+    properties:
+      success:
+        type: boolean
+    additionalProperties: false
+    required:
+      - success
+  Response51526:
+    type: object
+    properties:
+      success:
+        type: boolean
+    additionalProperties: false
+    required:
+      - success
+  Response51527:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51529:
+    type: object
+    properties:
+      success:
+        type: boolean
+    additionalProperties: false
+    required:
+      - success
+  Response51530:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51532:
+    type: object
+    properties:
+      success:
+        type: boolean
+    additionalProperties: false
+    required:
+      - success
+  Response51533:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51535:
+    type: object
+    properties:
+      success:
+        type: boolean
+    additionalProperties: false
+    required:
+      - success
+  Response51536:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51538:
+    type: object
+    properties:
+      success:
+        type: boolean
+    additionalProperties: false
+    required:
+      - success
+  Response51540:
+    type: object
+    properties:
+      success:
+        type: boolean
+    additionalProperties: false
+    required:
+      - success
+  Response51542:
+    type: object
+    properties:
+      base-ip:
+        type: string
+    additionalProperties: false
+    required:
+      - base-ip
+  Response51546:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51548:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51549:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51551:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51552:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51554:
+    type: object
+    properties:
+      name:
+        type: string
+      bus:
+        type: string
+      device:
+        type: string
+      id:
+        type: string
+      label:
+        type: string
+      vendor:
+        type: string
+      product:
+        type: string
+    additionalProperties: false
+    required:
+      - name
+      - bus
+      - device
+      - id
+      - label
+      - vendor
+      - product
+  Response51558:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51560:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51562:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51564Source:
+    type: object
+    properties:
+      file:
+        x-terraform-computed: true
+        type: string
+    additionalProperties: false
+    required:
+      - file
+  Response51564Target:
+    type: object
+    properties:
+      bus:
+        x-terraform-computed: true
+        type: string
+      dev:
+        x-terraform-computed: true
+        type: string
+    additionalProperties: false
+    required:
+      - bus
+      - dev
+  Response51572:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51574:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51575:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51580:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51582:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errors: {}
+      message:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51583:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51588:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51590:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51591:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51593:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+    additionalProperties: false
+    required:
+      - success
+      - message
+  Response51594:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  Response51596:
+    type: object
+    properties:
+      antlet-names: {}
+    additionalProperties: false
+    required:
+      - antlet-names
+  Response51597:
+    type: object
+    properties:
+      errors: {}
+    additionalProperties: false
+    required:
+      - errors
+  TemplateName:
+    type: object
+    properties:
+      name:
+        x-terraform-id: true
+        type: string
+    additionalProperties: false
+    required:
+      - name
+  VDisk:
+    type: object
+    properties:
+      filepath:
+        x-terraform-computed: true
+        type: string
+      virtual-size-gib:
+        x-terraform-computed: true
+        type: integer
+        format: int64
+      virtual-size:
+        x-terraform-computed: true
+        type: integer
+        format: int64
+      name:
+        x-terraform-id: true
+        type: string
+      size-display:
+        x-terraform-computed: true
+        type: string
+      source:
+        $ref: '#/definitions/VDiskSource'
+      size:
+        x-terraform-computed: true
+        type: integer
+        format: int64
+      zpool-name:
+        type: string
+      device:
+        x-terraform-computed: true
+        type: string
+      target:
+        $ref: '#/definitions/VDiskTarget'
+      virtual-size-display:
+        x-terraform-computed: true
+        type: string
+      bus:
+        type: string
+      gsize:
+        type: integer
+        format: int64
+    additionalProperties: false
+    required:
+      - name
+  VDiskSource:
+    type: object
+    properties:
+      file:
+        x-terraform-computed: true
+        type: string
+    additionalProperties: false
+    required:
+      - file
+  VDiskTarget:
+    type: object
+    properties:
+      bus:
+        x-terraform-computed: true
+        type: string
+      dev:
+        x-terraform-computed: true
+        type: string
+    additionalProperties: false
+    required:
+      - bus
+      - dev
+  VNic:
+    type: object
+    properties:
+      model:
+        type: string
+      type:
+        type: string
+      source:
+        type: string
+      mac-address:
+        x-terraform-id: true
+        x-terraform-computed: true
+        type: string
+    additionalProperties: false
+    required:
+      - type
+      - source
+security:
+  - api_key: []
+produces:
+  - application/json
+paths:
+  /api/login:
+    post:
+      tags:
+        - auth
+      summary: Returns a JSON Web Token (JWT) to use as authentication
+      operationId: login
+      parameters:
+        - in: body
+          name: Body51373
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51373'
+      responses:
+        '200':
+          schema: {}
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51412'
+          description: Bad Request
+  /api/ssh-webconsole:
+    post:
+      tags:
+        - auth
+      summary: SSH webconsole auth
+      operationId: ssh-webconsole
+      parameters:
+        - in: body
+          name: Body51374
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51374'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51413'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51414'
+          description: Bad Request
+  /api/node:
+    post:
+      tags:
+        - auth
+      summary: Add node config to antman db
+      operationId: add-node
+      parameters:
+        - in: body
+          name: ''
+          description: ''
+          required: true
+          schema: {}
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/nodes:
+    get:
+      tags:
+        - auth
+      summary: List port forwarding rules
+      operationId: list-nodes
+      responses:
+        '200':
+          schema: {}
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51417'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/nodes/{name}':
+    delete:
+      tags:
+        - auth
+      summary: Delete a port forwarding rule
+      operationId: delete-node
+      parameters:
+        - in: path
+          name: name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/update-pass:
+    post:
+      tags:
+        - auth
+      summary: Password update
+      operationId: update-pass
+      parameters:
+        - in: body
+          name: Body51376
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51376'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51420'
+          description: ''
+  /api/ssh/send:
+    get:
+      tags:
+        - auth
+      summary: send ssh keys
+      operationId: send-ssh-keys
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51421'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51422'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/ssh/receive:
+    post:
+      tags:
+        - auth
+      summary: receive ssh keys
+      operationId: receive-ssh-keys
+      parameters:
+        - in: body
+          name: Body51377
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51377'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51424'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51425'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/oauth2:
+    '':
+      tags:
+        - oauth2
+      responses:
+        default:
+          description: ''
+  /api/antaid/request-support:
+    post:
+      tags:
+        - antaid
+      summary: Requests a support to one of our antAid instances
+      operationId: request-support
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51427'
+          description: ''
+  /api/antaid/close-tunnel:
+    post:
+      tags:
+        - antaid
+      summary: Closes the antAid tunnel if any
+      operationId: close-antaid-tunnel
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51428'
+          description: ''
+  /api/antlets:
+    get:
+      tags:
+        - antlets
+      summary: Returns a list of antlets
+      operationId: list-antlets
+      responses:
+        '200':
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AntletSimple'
+          description: successful operation
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+    post:
+      tags:
+        - antlets
+      summary: Creates an antlet with given specification.
+      operationId: create-antlet
+      parameters:
+        - in: body
+          name: AntletSimple
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/AntletSimple'
+      description: >-
+        Only include following keys: dname, template, ram, cpu, antlet-num,
+        zpool-name and compression. All other values will be computed.
+      responses:
+        '201':
+          schema:
+            $ref: '#/definitions/AntletSimple'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51431'
+          description: >-
+            Missing required key. The missing key(s) will be listed in the
+            'errors' object.
+        '403':
+          description: '`Not authorized` Invalid or missing JWT.'
+          schema:
+            type: string
+  '/api/antlets/{antlet-name}':
+    get:
+      tags:
+        - antlets
+      summary: 'Returns the antlet which name matches {antlet-name}'
+      operationId: get-antlet
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/AntletSimple'
+          description: successful operation
+        '400':
+          schema: {}
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+        '404':
+          description: Antlet not found.
+    put:
+      tags:
+        - antlets
+      summary: 'Updates the antlet which name matches {antlet-name}'
+      description: >-
+        Only update the following keys: dname, ram, cpu, description, antlet-num
+        (optional), autostart, zfs-quota. All other values are computed.
+      operationId: update-antlet
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          x-terraform-id: true
+          type: string
+        - in: body
+          name: AntletSimple
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/AntletSimple'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/AntletSimple'
+          description: Successful operation
+        '400':
+          schema:
+            $ref: '#/definitions/Response51435'
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+    delete:
+      tags:
+        - antlets
+      summary: >-
+        Deletes the antlet which name matches the given '{antlet-name}'
+        parameter
+      description: Make sure the antlet is shut-down beofore attempting to delete it.
+      operationId: delete-antlet
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          x-terraform-id: true
+          type: string
+      responses:
+        '204':
+          description: Successful operation. No antlet to return.
+        '400':
+          schema:
+            $ref: '#/definitions/Response51437'
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+    post:
+      tags:
+        - snapshots
+      summary: Creates a snapshot for the given antlet
+      description: >-
+        You only need to pass the snapshot name. All other values will be
+        computed.
+      operationId: create-snapshot
+      parameters:
+        - in: path
+          name: antlet-name
+          description: Name of the antlet you want to create the snapshot for
+          required: true
+          type: string
+        - in: body
+          name: AntletsSnapshot
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/AntletsSnapshot'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/AntletsSnapshot'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51439'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/antlets/force/{antlet-name}':
+    delete:
+      tags:
+        - antlets
+      summary: >-
+        Deletes the antlet which name matches the given '{antlet-name}'
+        parameter, and any associated snapshots adn backups.
+      description: Make sure the antlet is shut-down beofore attempting to delete it.
+      operationId: delete-antlet-force
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          x-terraform-id: true
+          type: string
+      responses:
+        '204':
+          description: Successful operation. No antlet to return.
+        '400':
+          schema:
+            $ref: '#/definitions/Response51441'
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/antlets/clone:
+    post:
+      tags:
+        - antlets
+      summary: Clones an antlet
+      operationId: clone-antlet
+      parameters:
+        - in: body
+          name: Body51378
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51378'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51443'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51444'
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/antlets/export:
+    post:
+      tags:
+        - antlets
+      summary: Exports an antlet
+      operationId: export-antlet
+      parameters:
+        - in: body
+          name: Body51379
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51379'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51446'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51447'
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/antlets/import:
+    post:
+      tags:
+        - antlets
+      summary: Imports an antlet
+      operationId: import-antlet
+      parameters:
+        - in: body
+          name: Body51380
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51380'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51449'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51450'
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/antlets/start-vnc-proxy:
+    post:
+      tags:
+        - antlets
+      summary: Starts an antlet's vnc proxy and returns the port it is listening to
+      operationId: start-vnc-proxy
+      parameters:
+        - in: body
+          name: Body51381
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51381'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51452'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51453'
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/antlets/vnc-alive-signal:
+    post:
+      tags:
+        - antlets
+      summary: Sends vnc alive signal so the vnc proxy is not cleaned up
+      operationId: vnc-alive-tick
+      parameters:
+        - in: body
+          name: Body51382
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51382'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51455'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51456'
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/antlets/{antlet-name}/state':
+    post:
+      tags:
+        - antlets
+      description: >-
+        The antlet must be in a valid state for the given operation: e.g. needs
+        to be shutdown in order to start, etc... Valid actions are start, stop,
+        pause, resume, force-stop and reboot
+      summary: Changes the state of the given antlet.
+      operationId: change-state
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+        - in: body
+          name: Body51383
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51383'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51458'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51459'
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+    get:
+      tags:
+        - antlets
+      description: ''
+      summary: Returns the current state of the requestet antlet
+      operationId: get-state
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51461'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51462'
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/antlets/{antlet-name}/dependencies':
+    get:
+      tags:
+        - antlets
+      description: ''
+      summary: Returns the dependencies of the requested antlet
+      operationId: list-dependencies
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema: {}
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51465'
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/antlets/{antlet-name}/restore-default-nic':
+    put:
+      tags:
+        - antlets
+      summary: Restores default nic
+      operationId: restore-default-nic
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51467'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51468'
+          description: Bad request.
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/antlets/{antlet-name}/reboot':
+    post:
+      tags:
+        - antlets
+      summary: Reboots an antlet
+      operationId: reboot-antlet
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51470'
+          description: ''
+  '/api/antlets/{antlet-name}/start':
+    post:
+      tags:
+        - antlets
+      summary: start an antlet
+      operationId: start-antlet
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51471'
+          description: ''
+  '/api/antlets/{antlet-name}/stop':
+    post:
+      tags:
+        - antlets
+      summary: stop an antlet
+      operationId: stop-antlet
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51472'
+          description: ''
+  '/api/antlets/{antlet-name}/force-stop':
+    post:
+      tags:
+        - antlets
+      summary: force-stop an antlet
+      operationId: force-stop-antlet
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51473'
+          description: ''
+  '/api/antlets/{antlet-name}/pause':
+    post:
+      tags:
+        - antlets
+      summary: pause an antlet
+      operationId: pause-antlet
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51474'
+          description: ''
+  '/api/antlets/{antlet-name}/resume':
+    post:
+      tags:
+        - antlets
+      summary: resume an antlet
+      operationId: resume-antlet
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51475'
+          description: ''
+  /api/templates:
+    post:
+      tags:
+        - templates
+      summary: >-
+        Installs a template listed on http://central.antsle.com/api/templates
+        that matches the {template-name}
+      operationId: install-template
+      parameters:
+        - in: body
+          name: TemplateName
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/TemplateName'
+      responses:
+        '201':
+          schema:
+            $ref: '#/definitions/Response51476'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51477'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+    get:
+      tags:
+        - templates
+      description: 'Optional keys: ''origin'', ''origin-display'''
+      summary: Returns a list of installed templates
+      operationId: list-templates
+      responses:
+        '200':
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Response51479'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51480'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+    delete:
+      tags:
+        - templates
+      summary: 'Deletes an template that matches {template-name}'
+      operationId: delete-template
+      parameters:
+        - in: body
+          name: TemplateName
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/TemplateName'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51482'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51483'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/templates/{template-name}':
+    get:
+      tags:
+        - templates
+      summary: Returns the requested template
+      operationId: get-template
+      parameters:
+        - in: path
+          name: template-name
+          description: ''
+          required: true
+          x-terraform-id: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51485'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51486'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+    delete:
+      tags:
+        - templates
+      summary: 'Deletes an template that matches {template-name}'
+      operationId: delete-template
+      parameters:
+        - in: path
+          name: template-name
+          description: ''
+          required: true
+          x-terraform-id: true
+          type: string
+      responses:
+        '204':
+          description: Successful operation. Nothing to return
+        '400':
+          schema:
+            $ref: '#/definitions/Response51488'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+        '404':
+          description: Antlet not found
+  '/api/templates-install/{template-key}':
+    post:
+      tags:
+        - templates
+      summary: >-
+        Installs a template listed on http://central.antsle.com/api/templates
+        that matches the {template-key}
+      operationId: install-template
+      parameters:
+        - in: path
+          name: template-key
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51490'
+          description: ''
+  /api/templates-statuses:
+    get:
+      tags:
+        - templates
+      summary: Returns statuses of templates
+      operationId: template-statuses
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/templates/available:
+    get:
+      tags:
+        - templates
+      summary: Returns a list of available templates to install
+      operationId: list-available-templates
+      responses:
+        '200':
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Response51492'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51493'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/network/load-network-defaults:
+    get:
+      tags:
+        - network
+      description: Default interface and gateway may be empty and are therefore optional
+      summary: Load network defaults
+      operationId: load-network-defaults
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51495'
+          description: ''
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/network/edit-network-defaults:
+    post:
+      tags:
+        - network
+      summary: Change network defaults
+      operationId: edit-network-defaults
+      parameters:
+        - in: body
+          name: Body51384
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51384'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51497'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51498'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/network/commit-and-restart:
+    post:
+      tags:
+        - network
+      summary: Commits network changes and restarts the antsle
+      operationId: netconf-commit-and-restart
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51500'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51501'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/refresh:
+    post:
+      tags:
+        - system
+      summary: Returns refreshed data to update the webapp UI.
+      operationId: refresh-aux
+      parameters:
+        - in: body
+          name: Body51385
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51385'
+      responses:
+        default:
+          description: ''
+  /api/system/user-id:
+    get:
+      tags:
+        - system
+      summary: Get user id
+      operationId: get-user-id
+      responses:
+        '200':
+          schema: {}
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51504'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/update-settings:
+    post:
+      tags:
+        - system
+      description: '''zpool -> compression'' can either be ''off'' or ''lz4''.'
+      summary: Updates system settings
+      operationId: update-system-settings
+      parameters:
+        - in: body
+          name: Body51386
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51386'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51506'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51507'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/trigger-service-action:
+    post:
+      tags:
+        - system
+      description: '''action'' can either be ''start'', ''stop'' or ''restart'''
+      summary: 'Start, stop or restart a service by name'
+      operationId: trigger-service-action
+      parameters:
+        - in: body
+          name: Body51387
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51387'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51509'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51510'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/start-ssh-proxy:
+    post:
+      tags:
+        - system
+      summary: Start ssh proxy
+      operationId: start-ssh-proxy
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51512'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51513'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/stop-ssh-proxy:
+    post:
+      tags:
+        - system
+      summary: Stop ssh proxy
+      operationId: stop-ssh-proxy
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51515'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51516'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/list-services:
+    get:
+      tags:
+        - system
+      summary: Returns an array of all services
+      operationId: list-services
+      responses:
+        '200':
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Response51518'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51519'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/update-service:
+    post:
+      tags:
+        - system
+      summary: Updates the received service.
+      description: >-
+        Used to update the autostart function. For starting or stopping a
+        service please use '/api/system/trigger-service-action'
+      operationId: update-service
+      parameters:
+        - in: body
+          name: Body51388
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51388'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51521'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51522'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/tutorial-finished:
+    post:
+      tags:
+        - system
+      summary: Sets tutorial state to finished
+      operationId: tutorial-finished
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51524'
+          description: ''
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/send-invites:
+    post:
+      tags:
+        - system
+      summary: Send referral invites
+      operationId: send-invites
+      parameters:
+        - in: body
+          name: Body51389
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51389'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51526'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51527'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/setup/send-esn-token:
+    post:
+      tags:
+        - system
+      summary: Sends an ESN token
+      operationId: send-esn-token
+      parameters:
+        - in: body
+          name: Body51390
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51390'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51529'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51530'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/setup/install-esn:
+    post:
+      tags:
+        - system
+      summary: Installs an ESN
+      operationId: install-esn
+      parameters:
+        - in: body
+          name: Body51391
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51391'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51532'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51533'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/setup/finish-setup:
+    post:
+      tags:
+        - system
+      summary: Installs an ESN
+      operationId: finish-setup
+      parameters:
+        - in: body
+          name: Body51392
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51392'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51535'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51536'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/upgrade-antman:
+    post:
+      tags:
+        - system
+      summary: Upgrades antMan to the given version
+      operationId: upgrade-antman
+      parameters:
+        - in: body
+          name: Body51393
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51393'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51538'
+          description: ''
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/upgrade-edgelinux:
+    post:
+      tags:
+        - system
+      summary: Upgrades edgeLinux to the given version
+      operationId: upgrade-edgelinux
+      parameters:
+        - in: body
+          name: Body51394
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51394'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51540'
+          description: ''
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/base-ip:
+    get:
+      tags:
+        - system
+      summary: Returns the base ip. Default '10.1.1.'
+      operationId: return-base-ip
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51542'
+          description: ''
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/hardware:
+    get:
+      tags:
+        - system
+      summary: Returns the hardware specs of the server
+      operationId: get-hardware-specs
+      responses:
+        '200':
+          schema: {}
+          description: ''
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/demo/email:
+    post:
+      tags:
+        - system
+      summary: Upgrades antMan to the given version
+      operationId: send-demo-email
+      parameters:
+        - in: body
+          name: Body51395
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51395'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51546'
+          description: ''
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/antlets/{antlet-name}/vusbs/enable':
+    post:
+      tags:
+        - vusbs
+      summary: Enables a vUSB for a given antlet
+      operationId: enable-vusb
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+        - in: body
+          name: Body51396
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51396'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51548'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51549'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/antlets/{antlet-name}/vusbs/disable':
+    post:
+      tags:
+        - vusbs
+      summary: Disables a vUSB for a given antlet
+      operationId: disable-vusb
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+        - in: body
+          name: Body51397
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51397'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51551'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51552'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/system/list-usbs:
+    get:
+      tags:
+        - vusbs
+      summary: Returns a list of available USBs
+      operationId: list-usbs
+      responses:
+        '200':
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Response51554'
+          description: ''
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/antlets/{antlet-name}/vnics':
+    get:
+      tags:
+        - vnics
+      summary: Returns a list of all vNICs for the given antlet
+      operationId: list-vnics
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/VNic'
+          description: ''
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+        '404':
+          description: Antlet not found
+    post:
+      tags:
+        - vnics
+      summary: >-
+        Creates a vnic (virtual network interface controller) for the given
+        antlet
+      description: >-
+        The mac-address will be computed. For type, use 'bridge'; and for model
+        choose 'virtio' or 'e1000'
+      operationId: create-vnic
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+        - in: body
+          name: VNic
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/VNic'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/VNic'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51558'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+        '404':
+          description: Antlet not found
+  '/api/antlets/{antlet-name}/vnics/{vnic-mac-address}':
+    get:
+      tags:
+        - vnics
+      summary: Gets a vNIC by mac-address for the given antlet
+      operationId: get-vnic
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+        - in: path
+          name: vnic-mac-address
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/VNic'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51560'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+        '404':
+          description: Antlet not found
+    delete:
+      tags:
+        - vnics
+      summary: Deletes a vnic (virtual network interface controller)
+      operationId: delete-vnic
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+        - in: path
+          name: vnic-mac-address
+          description: ''
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Successful operation. Nothing to return.
+        '400':
+          schema:
+            $ref: '#/definitions/Response51562'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+        '404':
+          description: Antlet not found
+  '/api/antlets/{antlet-name}/vdisks':
+    get:
+      tags:
+        - vdisks
+      summary: Returns a list of vdisks for the given antlet.
+      operationId: list-vdisks
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/VDisk'
+          description: ''
+        '400':
+          description: Bad Request.
+          schema: {}
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+        '404':
+          description: Antlet not found.
+    post:
+      tags:
+        - vdisks
+      summary: Creates a vdisk for the given antlet.
+      description: >-
+        Only include values for the following keys: name, bus, zpool-name and
+        gsize. All other values will be computed.
+      operationId: create-vdisk
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+        - in: body
+          name: VDisk
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/VDisk'
+      responses:
+        '201':
+          schema: {}
+          description: Successful operation
+        '400':
+          schema: {}
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+        '404':
+          description: Antlet not found.
+  '/api/antlets/{antlet-name}/vdisks/{disk-name}':
+    get:
+      tags:
+        - vdisks
+      summary: Gets a vdisk for the given antlet.
+      operationId: get-vdisk
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+        - in: path
+          name: disk-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/VDisk'
+          description: ''
+        '400':
+          description: Bad Request.
+          schema: {}
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+        '404':
+          description: Antlet not found.
+  '/api/antlets/{antlet-name}/vdisks/{vdisk-name}':
+    delete:
+      tags:
+        - vdisks
+      summary: Deletes a vdisk
+      operationId: delete-vdisk
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+        - in: path
+          name: vdisk-name
+          description: ''
+          required: true
+          type: string
+      responses:
+        '204':
+          description: vDisk successfully deleted. Nothing to return.
+        '400':
+          schema:
+            $ref: '#/definitions/Response51572'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/antlets/{antlet-name}/vdisks/import':
+    post:
+      tags:
+        - vdisks
+      summary: Imports a vdisk for the given antlet.
+      description: >-
+        You'll first need to transfer the image to this server (i.e. using scp)
+        and then provide such path in the {image-filepath} field.
+      operationId: import-vdisk
+      parameters:
+        - in: path
+          name: antlet-name
+          description: ''
+          required: true
+          type: string
+        - in: body
+          name: Body51398
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51398'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51574'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51575'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/antlets/{antlet-name}/snapshots':
+    get:
+      tags:
+        - snapshots
+      summary: Returns a list of snapshots
+      operationId: list-snapshots
+      parameters:
+        - in: path
+          name: antlet-name
+          description: The name of the antlet the snapshot belongs to
+          required: true
+          readOnly: true
+          type: string
+      responses:
+        '200':
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AntletsSnapshot'
+          description: ''
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/antlets/{antlet-name}/snapshots/{snapshot-name}':
+    get:
+      tags:
+        - snapshots
+      summary: Gets a snapshot
+      operationId: get-snapshot
+      parameters:
+        - in: path
+          name: antlet-name
+          description: The name of the antlet the snapshot belongs to
+          required: true
+          readOnly: true
+          type: string
+        - in: path
+          name: snapshot-name
+          description: The name of the snapshot you want returned.
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/AntletsSnapshot'
+          description: ''
+        '403':
+          '404':
+            description: Snapshot not found
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+    delete:
+      tags:
+        - snapshots
+      summary: Deletes the given snapshot for the given antlet
+      operationId: delete-snapshot
+      parameters:
+        - in: path
+          name: antlet-name
+          description: The name of the antlet the snapshot belongs to
+          required: true
+          readOnly: true
+          type: string
+        - in: path
+          name: snapshot-name
+          description: The name of the snapshot you want returned.
+          required: true
+          type: string
+      responses:
+        '203':
+          description: Operation sucessful. Nothing to return.
+        '400':
+          schema:
+            $ref: '#/definitions/Response51580'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  '/api/antlets/{antlet-name}/snapshots/restore/{snapshot-name}':
+    post:
+      tags:
+        - snapshots
+      summary: Restores the antlet to a snapshot
+      description: >-
+        The antlet should be shutdown and needs to be restarted for the changes
+        to take effect.
+      operationId: restore-snapshot
+      parameters:
+        - in: path
+          name: antlet-name
+          description: The name of the antlet the snapshot belongs to
+          required: true
+          type: string
+        - in: path
+          name: snapshot-name
+          description: The name of the snapshot you want returned.
+          required: true
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51582'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51583'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/anthill/should-show-nps:
+    get:
+      tags:
+        - anthill
+      summary: Should show NPS?
+      operationId: should-show-nps?
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/anthill/upsert-nps:
+    post:
+      tags:
+        - anthill
+      summary: Upserts an NPS entry in anthill
+      operationId: upsert-nps
+      parameters:
+        - in: body
+          name: Body51399
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51399'
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/backups:
+    get:
+      tags:
+        - backups
+      summary: Lists a list backups
+      operationId: list-backups
+      description: >-
+        The key 'progress' will only be returned for a backup which is currently
+        uploading and is therefore optional.
+      parameters:
+        - in: query
+          name: antlet-name
+          description: ''
+          required: false
+          type: string
+        - in: query
+          name: account
+          description: ''
+          required: false
+          type: boolean
+      responses:
+        '200':
+          schema:
+            type: array
+            items: {}
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51588'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/backups/schedule-backups:
+    post:
+      tags:
+        - backups
+      summary: Schedule daily backups
+      operationId: schedule-backups
+      parameters:
+        - in: body
+          name: Body51400
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51400'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51590'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51591'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/backups/unschedule-backups:
+    post:
+      tags:
+        - backups
+      summary: Unschedule daily backups
+      operationId: unschedule-backups
+      parameters:
+        - in: body
+          name: Body51401
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51401'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51593'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51594'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/backups/get-scheduled-backups:
+    get:
+      tags:
+        - backups
+      summary: Returns a list of antlet-names that have backups scheduled
+      operationId: get-scheduled-backups
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Response51596'
+          description: ''
+        '400':
+          schema:
+            $ref: '#/definitions/Response51597'
+          description: Bad request. Detailed error description in 'error'-object
+        '403':
+          description: Not authorized. Invalid or missing JWT.
+          schema:
+            type: string
+  /api/backups/take:
+    post:
+      tags:
+        - backups
+      summary: Upserts an NPS entry in anthill
+      operationId: take-backup
+      parameters:
+        - in: body
+          name: Body51402
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51402'
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/backups/retrieve:
+    post:
+      tags:
+        - backups
+      summary: Upserts an NPS entry in anthill
+      operationId: retrieve-backup
+      parameters:
+        - in: body
+          name: Body51403
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51403'
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/backups/restore:
+    post:
+      tags:
+        - backups
+      summary: Upserts an NPS entry in anthill
+      operationId: restore-backup
+      parameters:
+        - in: body
+          name: Body51404
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51404'
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/backups/delete-local-copy:
+    delete:
+      tags:
+        - backups
+      summary: Upserts an NPS entry in anthill
+      operationId: delete-backup-local-copy
+      parameters:
+        - in: body
+          name: Body51405
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51405'
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/backups/delete-backup:
+    delete:
+      tags:
+        - backups
+      summary: Upserts an NPS entry in anthill
+      operationId: delete-backup
+      parameters:
+        - in: body
+          name: Body51406
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Body51406'
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/lb-rules:
+    post:
+      tags:
+        - load-balancing
+      summary: Create a load balancing rule
+      operationId: create-lb-rule
+      parameters:
+        - in: body
+          name: ''
+          description: ''
+          required: true
+          schema: {}
+      responses:
+        '200':
+          schema: {}
+          description: ''
+    get:
+      tags:
+        - load-balancing
+      summary: List load balancing rules
+      operationId: list-lb-rules
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  '/api/lb-rules/{id}':
+    put:
+      tags:
+        - load-balancing
+      summary: Update a load balancing rule
+      operationId: update-lb-rule
+      parameters:
+        - in: path
+          name: id
+          description: ''
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: ''
+          description: ''
+          required: true
+          schema: {}
+      responses:
+        '200':
+          schema: {}
+          description: ''
+    get:
+      tags:
+        - load-balancing
+      summary: Get a load balancing rule
+      operationId: get-lb-rule
+      parameters:
+        - in: path
+          name: id
+          description: ''
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          schema: {}
+          description: ''
+    delete:
+      tags:
+        - load-balancing
+      summary: Delete a load balancing rule
+      operationId: delete-lb-rule
+      parameters:
+        - in: path
+          name: id
+          description: ''
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/pf-rules:
+    post:
+      tags:
+        - pf
+      summary: Create a port forwarding rule
+      operationId: create-pf-rule
+      parameters:
+        - in: body
+          name: ''
+          description: ''
+          required: true
+          schema: {}
+      responses:
+        '200':
+          schema: {}
+          description: ''
+    get:
+      tags:
+        - pf
+      summary: List port forwarding rules
+      operationId: list-pf-rules
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  '/api/pf-rules/{id}':
+    put:
+      tags:
+        - pf
+      summary: Update a port forwarding rule
+      operationId: update-pf-rule
+      parameters:
+        - in: path
+          name: id
+          description: ''
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: ''
+          description: ''
+          required: true
+          schema: {}
+      responses:
+        '200':
+          schema: {}
+          description: ''
+    get:
+      tags:
+        - pf
+      summary: Get a port forwarding rule
+      operationId: get-pf-rule
+      parameters:
+        - in: path
+          name: id
+          description: ''
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          schema: {}
+          description: ''
+    delete:
+      tags:
+        - pf
+      summary: Delete a port forwarding rule
+      operationId: delete-pf-rule
+      parameters:
+        - in: path
+          name: id
+          description: ''
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/demo/init:
+    get:
+      tags:
+        - demo
+      summary: Initialize demo instance
+      operationId: init-demo
+      responses:
+        '200':
+          schema: {}
+          description: ''
+  /api/demo:
+    delete:
+      tags:
+        - demo
+      summary: Delete demo instance
+      operationId: delete-demo
+      responses:
+        '200':
+          schema: {}
+          description: ''
+consumes:
+  - application/json
+info:
+  title: antMan API
+  version: 1.0.0
+  description: antMan REST services to manage your antsle environment
+swagger: '2.0'
+basePath: ''
+host: 192.168.1.122:3000

@@ -1,0 +1,25 @@
+- terraform:
+    project_path: "{{ terraform_dir }}"
+    force_init: true
+    state: present
+    variables:
+        token: "{{ antsle_token }}"
+        name: k8s-master
+        start_ip_octet: 10
+        instance_count: 3
+  register: tf_masters
+
+- include_tasks: "antlet_nic.yml"
+  vars:
+    antlet_name: "{{ item.dname }}"
+    mac: "{{ antlet_nic_macs[item.dname]['mac'] }}"
+    nic_type: "bridge"
+    source: "{{ antlet_nic_macs[item.dname]['source'] }}"
+    nic_model: "virtio"
+  when: 'item.dname in antlet_nic_macs'
+  with_items:  "{{ tf_masters.outputs.antlet.value }}"
+
+- include_tasks: "antlet_start.yml"
+  vars:
+      antlet_name: "{{ item.dname }}" 
+  with_items:  "{{ tf_masters.outputs.antlet.value }}"

@@ -1,0 +1,5 @@
+version: '1'
+services:
+  antsle:
+    swagger-url: /Users/manny/git/ansible-roles/antsle/files/terraform/api/swagger.yaml
+    insecure_skip_verify: true

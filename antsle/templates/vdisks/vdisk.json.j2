@@ -1,0 +1,20 @@
+{
+    "filepath":"/antlets/{{ antlet.name }}/antsle:volumes/kubelet",
+    "virtual-size-gib": "{{ antlet.vdisk.virtual_size_gib }}",
+    "virtual-size": "{{ antlet.vdisk.virtual_size }}",
+    "name": "{{ antlet.vdisk.name }}",
+    "size-display": "{{ vdisk_display_size }}",
+    "source":
+    {
+        "file":"/antlets/{{ antlet.name }}/antsle:volumes/{{ antlet.vdisk.name }}"
+    },
+    "size": "{{ vdisk_size }}",
+    "zpool-name": "antlets",
+    "device":"disk",
+    "target":{
+        "bus":"virtio","dev":"vdb"
+    },
+    "virtual-size-display":"100 Gib",
+    "gsize": "{{ antlet.vdisk.gsize }}",
+    "bus": "{{ antlet.vdisk.bus }}"
+}

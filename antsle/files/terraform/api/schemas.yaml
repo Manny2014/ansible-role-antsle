@@ -1,0 +1,868 @@
+---
+format_version: '0.1'
+provider_schemas:
+  antsle:
+    provider:
+      version: 0
+      block:
+        attributes:
+          api_key:
+            type: string
+            required: true
+        block_types:
+          endpoints:
+            nesting_mode: set
+            block:
+              attributes:
+                antlets:
+                  type: string
+                  description: 'Use this to override the resource endpoint URL (the
+                    default one or the one constructed from the `region`).
+
+'
+                  optional: true
+                templates:
+                  type: string
+                  description: 'Use this to override the resource endpoint URL (the
+                    default one or the one constructed from the `region`).
+
+'
+                  optional: true
+                vdisks:
+                  type: string
+                  description: 'Use this to override the resource endpoint URL (the
+                    default one or the one constructed from the `region`).
+
+'
+                  optional: true
+                vnics:
+                  type: string
+                  description: 'Use this to override the resource endpoint URL (the
+                    default one or the one constructed from the `region`).
+
+'
+                  optional: true
+    resource_schemas:
+      antsle_antlets:
+        version: 0
+        block:
+          attributes:
+            antlet_num:
+              type: number
+              optional: true
+              computed: true
+            autostart:
+              type: bool
+              optional: true
+              computed: true
+            compression:
+              type: string
+              optional: true
+            cpu:
+              type: number
+              required: true
+            description:
+              type: string
+              optional: true
+            dname:
+              type: string
+              required: true
+            dtype:
+              type: string
+              optional: true
+              computed: true
+            id:
+              type: string
+              optional: true
+              computed: true
+            ip:
+              type: string
+              optional: true
+              computed: true
+            ram:
+              type: number
+              required: true
+            ram_display:
+              type: string
+              optional: true
+              computed: true
+            state:
+              type: string
+              optional: true
+              computed: true
+            storage_display:
+              type: string
+              optional: true
+              computed: true
+            template:
+              type: string
+              optional: true
+            uuid:
+              type: string
+              optional: true
+              computed: true
+            zfs_quota:
+              type: number
+              optional: true
+              computed: true
+            zpool:
+              type:
+              - map
+              - string
+              optional: true
+              computed: true
+            zpool_name:
+              type: string
+              optional: true
+              computed: true
+          block_types:
+            timeouts:
+              nesting_mode: single
+              block:
+                attributes:
+                  default:
+                    type: string
+                    optional: true
+      antsle_templates:
+        version: 0
+        block:
+          attributes:
+            id:
+              type: string
+              optional: true
+              computed: true
+            name:
+              type: string
+              required: true
+          block_types:
+            timeouts:
+              nesting_mode: single
+              block:
+                attributes:
+                  default:
+                    type: string
+                    optional: true
+      antsle_vdisks:
+        version: 0
+        block:
+          attributes:
+            bus:
+              type: string
+              optional: true
+            device:
+              type: string
+              optional: true
+              computed: true
+            filepath:
+              type: string
+              optional: true
+              computed: true
+            gsize:
+              type: number
+              optional: true
+            id:
+              type: string
+              optional: true
+              computed: true
+            name:
+              type: string
+              required: true
+            size:
+              type: number
+              optional: true
+              computed: true
+            size_display:
+              type: string
+              optional: true
+              computed: true
+            source:
+              type:
+              - map
+              - string
+              optional: true
+            target:
+              type:
+              - map
+              - string
+              optional: true
+            virtual_size:
+              type: number
+              optional: true
+              computed: true
+            virtual_size_display:
+              type: string
+              optional: true
+              computed: true
+            virtual_size_gib:
+              type: number
+              optional: true
+              computed: true
+            zpool_name:
+              type: string
+              optional: true
+          block_types:
+            timeouts:
+              nesting_mode: single
+              block:
+                attributes:
+                  default:
+                    type: string
+                    optional: true
+      antsle_vnics:
+        version: 0
+        block:
+          attributes:
+            id:
+              type: string
+              optional: true
+              computed: true
+            mac_address:
+              type: string
+              optional: true
+              computed: true
+            model:
+              type: string
+              optional: true
+            source:
+              type: string
+              required: true
+            type:
+              type: string
+              required: true
+          block_types:
+            timeouts:
+              nesting_mode: single
+              block:
+                attributes:
+                  default:
+                    type: string
+                    optional: true
+    data_source_schemas:
+      antsle_antlets:
+        version: 0
+        block:
+          attributes:
+            antlet_num:
+              type: number
+              optional: true
+              computed: true
+            autostart:
+              type: bool
+              optional: true
+              computed: true
+            compression:
+              type: string
+              optional: true
+              computed: true
+            cpu:
+              type: number
+              optional: true
+              computed: true
+            description:
+              type: string
+              optional: true
+              computed: true
+            dname:
+              type: string
+              optional: true
+              computed: true
+            dtype:
+              type: string
+              optional: true
+              computed: true
+            id:
+              type: string
+              optional: true
+              computed: true
+            ip:
+              type: string
+              optional: true
+              computed: true
+            ram:
+              type: number
+              optional: true
+              computed: true
+            ram_display:
+              type: string
+              optional: true
+              computed: true
+            state:
+              type: string
+              optional: true
+              computed: true
+            storage_display:
+              type: string
+              optional: true
+              computed: true
+            template:
+              type: string
+              optional: true
+              computed: true
+            uuid:
+              type: string
+              optional: true
+              computed: true
+            zfs_quota:
+              type: number
+              optional: true
+              computed: true
+            zpool:
+              type:
+              - map
+              - string
+              optional: true
+              computed: true
+            zpool_name:
+              type: string
+              optional: true
+              computed: true
+          block_types:
+            filter:
+              nesting_mode: set
+              block:
+                attributes:
+                  name:
+                    type: string
+                    required: true
+                  values:
+                    type:
+                    - list
+                    - string
+                    required: true
+      antsle_antlets_instance:
+        version: 0
+        block:
+          attributes:
+            antlet_num:
+              type: number
+              optional: true
+              computed: true
+            autostart:
+              type: bool
+              optional: true
+              computed: true
+            compression:
+              type: string
+              optional: true
+              computed: true
+            cpu:
+              type: number
+              optional: true
+              computed: true
+            description:
+              type: string
+              optional: true
+              computed: true
+            dname:
+              type: string
+              optional: true
+              computed: true
+            dtype:
+              type: string
+              optional: true
+              computed: true
+            id:
+              type: string
+              required: true
+            ip:
+              type: string
+              optional: true
+              computed: true
+            ram:
+              type: number
+              optional: true
+              computed: true
+            ram_display:
+              type: string
+              optional: true
+              computed: true
+            state:
+              type: string
+              optional: true
+              computed: true
+            storage_display:
+              type: string
+              optional: true
+              computed: true
+            template:
+              type: string
+              optional: true
+              computed: true
+            uuid:
+              type: string
+              optional: true
+              computed: true
+            zfs_quota:
+              type: number
+              optional: true
+              computed: true
+            zpool:
+              type:
+              - map
+              - string
+              optional: true
+              computed: true
+            zpool_name:
+              type: string
+              optional: true
+              computed: true
+      antsle_available:
+        version: 0
+        block:
+          attributes:
+            description:
+              type: string
+              optional: true
+              computed: true
+            id:
+              type: string
+              optional: true
+              computed: true
+            key:
+              type: string
+              optional: true
+              computed: true
+            label:
+              type: string
+              optional: true
+              computed: true
+            template_size_label:
+              type: string
+              optional: true
+              computed: true
+            tpl_url:
+              type: string
+              optional: true
+              computed: true
+            xml_url:
+              type: string
+              optional: true
+              computed: true
+          block_types:
+            filter:
+              nesting_mode: set
+              block:
+                attributes:
+                  name:
+                    type: string
+                    required: true
+                  values:
+                    type:
+                    - list
+                    - string
+                    required: true
+      antsle_list_services:
+        version: 0
+        block:
+          attributes:
+            autostart:
+              type: bool
+              optional: true
+              computed: true
+            id:
+              type: string
+              optional: true
+              computed: true
+            name:
+              type: string
+              optional: true
+              computed: true
+            status:
+              type: string
+              optional: true
+              computed: true
+          block_types:
+            filter:
+              nesting_mode: set
+              block:
+                attributes:
+                  name:
+                    type: string
+                    required: true
+                  values:
+                    type:
+                    - list
+                    - string
+                    required: true
+      antsle_list_usbs:
+        version: 0
+        block:
+          attributes:
+            bus:
+              type: string
+              optional: true
+              computed: true
+            device:
+              type: string
+              optional: true
+              computed: true
+            id:
+              type: string
+              optional: true
+              computed: true
+            label:
+              type: string
+              optional: true
+              computed: true
+            name:
+              type: string
+              optional: true
+              computed: true
+            product:
+              type: string
+              optional: true
+              computed: true
+            vendor:
+              type: string
+              optional: true
+              computed: true
+          block_types:
+            filter:
+              nesting_mode: set
+              block:
+                attributes:
+                  name:
+                    type: string
+                    required: true
+                  values:
+                    type:
+                    - list
+                    - string
+                    required: true
+      antsle_snapshots:
+        version: 0
+        block:
+          attributes:
+            antlet_name:
+              type: string
+              optional: true
+              computed: true
+            creation:
+              type: string
+              optional: true
+              computed: true
+            creation_display:
+              type: string
+              optional: true
+              computed: true
+            id:
+              type: string
+              optional: true
+              computed: true
+            logicalreferenced:
+              type: number
+              optional: true
+              computed: true
+            logicalreferenced_display:
+              type: string
+              optional: true
+              computed: true
+            name:
+              type: string
+              optional: true
+              computed: true
+            origin:
+              type: string
+              optional: true
+              computed: true
+            origin_display:
+              type: string
+              optional: true
+              computed: true
+            used:
+              type: number
+              optional: true
+              computed: true
+            used_display:
+              type: string
+              optional: true
+              computed: true
+            zfs_path:
+              type: string
+              optional: true
+              computed: true
+          block_types:
+            filter:
+              nesting_mode: set
+              block:
+                attributes:
+                  name:
+                    type: string
+                    required: true
+                  values:
+                    type:
+                    - list
+                    - string
+                    required: true
+      antsle_templates:
+        version: 0
+        block:
+          attributes:
+            creation:
+              type: string
+              optional: true
+              computed: true
+            creation_display:
+              type: string
+              optional: true
+              computed: true
+            id:
+              type: string
+              optional: true
+              computed: true
+            logicalreferenced:
+              type: number
+              optional: true
+              computed: true
+            logicalreferenced_display:
+              type: string
+              optional: true
+              computed: true
+            name:
+              type: string
+              optional: true
+              computed: true
+            origin:
+              type: string
+              optional: true
+              computed: true
+            origin_display:
+              type: string
+              optional: true
+              computed: true
+            used:
+              type: number
+              optional: true
+              computed: true
+            used_display:
+              type: string
+              optional: true
+              computed: true
+            zfs_path:
+              type: string
+              optional: true
+              computed: true
+          block_types:
+            filter:
+              nesting_mode: set
+              block:
+                attributes:
+                  name:
+                    type: string
+                    required: true
+                  values:
+                    type:
+                    - list
+                    - string
+                    required: true
+      antsle_templates_instance:
+        version: 0
+        block:
+          attributes:
+            id:
+              type: string
+              required: true
+            name:
+              type: string
+              optional: true
+              computed: true
+      antsle_vdisks:
+        version: 0
+        block:
+          attributes:
+            bus:
+              type: string
+              optional: true
+              computed: true
+            device:
+              type: string
+              optional: true
+              computed: true
+            filepath:
+              type: string
+              optional: true
+              computed: true
+            gsize:
+              type: number
+              optional: true
+              computed: true
+            id:
+              type: string
+              optional: true
+              computed: true
+            name:
+              type: string
+              optional: true
+              computed: true
+            size:
+              type: number
+              optional: true
+              computed: true
+            size_display:
+              type: string
+              optional: true
+              computed: true
+            source:
+              type:
+              - map
+              - string
+              optional: true
+              computed: true
+            target:
+              type:
+              - map
+              - string
+              optional: true
+              computed: true
+            virtual_size:
+              type: number
+              optional: true
+              computed: true
+            virtual_size_display:
+              type: string
+              optional: true
+              computed: true
+            virtual_size_gib:
+              type: number
+              optional: true
+              computed: true
+            zpool_name:
+              type: string
+              optional: true
+              computed: true
+          block_types:
+            filter:
+              nesting_mode: set
+              block:
+                attributes:
+                  name:
+                    type: string
+                    required: true
+                  values:
+                    type:
+                    - list
+                    - string
+                    required: true
+      antsle_vdisks_instance:
+        version: 0
+        block:
+          attributes:
+            bus:
+              type: string
+              optional: true
+              computed: true
+            device:
+              type: string
+              optional: true
+              computed: true
+            filepath:
+              type: string
+              optional: true
+              computed: true
+            gsize:
+              type: number
+              optional: true
+              computed: true
+            id:
+              type: string
+              required: true
+            name:
+              type: string
+              optional: true
+              computed: true
+            size:
+              type: number
+              optional: true
+              computed: true
+            size_display:
+              type: string
+              optional: true
+              computed: true
+            source:
+              type:
+              - map
+              - string
+              optional: true
+              computed: true
+            target:
+              type:
+              - map
+              - string
+              optional: true
+              computed: true
+            virtual_size:
+              type: number
+              optional: true
+              computed: true
+            virtual_size_display:
+              type: string
+              optional: true
+              computed: true
+            virtual_size_gib:
+              type: number
+              optional: true
+              computed: true
+            zpool_name:
+              type: string
+              optional: true
+              computed: true
+      antsle_vnics:
+        version: 0
+        block:
+          attributes:
+            id:
+              type: string
+              optional: true
+              computed: true
+            mac_address:
+              type: string
+              optional: true
+              computed: true
+            model:
+              type: string
+              optional: true
+              computed: true
+            source:
+              type: string
+              optional: true
+              computed: true
+            type:
+              type: string
+              optional: true
+              computed: true
+          block_types:
+            filter:
+              nesting_mode: set
+              block:
+                attributes:
+                  name:
+                    type: string
+                    required: true
+                  values:
+                    type:
+                    - list
+                    - string
+                    required: true
+      antsle_vnics_instance:
+        version: 0
+        block:
+          attributes:
+            id:
+              type: string
+              required: true
+            mac_address:
+              type: string
+              optional: true
+              computed: true
+            model:
+              type: string
+              optional: true
+              computed: true
+            source:
+              type: string
+              optional: true
+              computed: true
+            type:
+              type: string
+              optional: true
+              computed: true

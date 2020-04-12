@@ -1,0 +1,36 @@
+# tasks file for antsle
+- name: Create Anstle Temp. Dir
+  file:
+    path: "{{ terraform_dir }}"
+    state: directory
+    recurse: yes
+
+- name: Copy Terraform Files
+  copy:
+    src: "{{ role_path }}/files/terraform/{{ item }}"
+    dest: "{{ terraform_dir }}/{{ item }}"
+    mode: 0777
+  with_items:
+  - main.tf
+  - variables.tf
+  - outputs.tf
+
+- name: Copy API Yaml
+  copy:
+    src: "{{ role_path }}/files/terraform/api/{{ item }}"
+    dest: "/tmp/{{ item }}"
+    mode: 0777
+  with_items:
+  - terraform-provider-openapi.yaml
+  - swagger.yaml
+
+
+# - name: Download Open API Provider
+#   get_url:
+#     url: https://github.com/dikhan/terraform-provider-openapi/releases/download/v0.27.1/terraform-provider-openapi_0.27.1_linux_amd64.tar.gz
+#     dest: /tmp/terraform-{{terraform_version}}.zip
+
+# - name: Install Open API Provider
+#   shell: |
+#     export PROVIDER_NAME=antsle  && curl -fsSL https://raw.githubusercontent.com/dikhan/terraform-provider-openapi/master/scripts/install.sh | bash -s -- --provider-name $PROVIDER_NAME
+

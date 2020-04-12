@@ -1,0 +1,28 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: docker.io/pycontribs/centos:7
+    pre_build_image: true
+    env:
+      OTF_VAR_antsle_PLUGIN_CONFIGURATION_FILE: "/tmp/terraform-provider-openapi.yaml"
+provisioner:
+  name: ansible
+  log: true
+  config_options:
+    defaults:
+      remote_tmp: /tmp/.ansible/tmp
+  lint:
+    name: ansible-lint
+  inventory:
+    ANSIBLE_ROLES_PATH: ${MOLECULE_PROJECT_DIRECTORY}/roles
+scenario:
+  name: default
+verifier:
+  name: testinfra
+  directory: tests/
+  lint:
+    name: flake8

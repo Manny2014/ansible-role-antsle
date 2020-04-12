@@ -1,0 +1,6 @@
+---
+- name: Converge
+  hosts: instance
+  become: yes
+  roles:
+    - role: antsle
