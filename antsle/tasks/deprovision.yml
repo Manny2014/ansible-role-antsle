@@ -1,0 +1,19 @@
+
+- include_tasks: "tf_module.yml"
+  vars:
+    state: "present"
+
+- include_tasks: "antlet_stop.yml"
+  vars:
+      antlet_name: "{{ item.dname }}" 
+  with_items: "{{ tf_nodes.outputs.antlet.value }}"
+
+- include_tasks: "antlet_wait_state.yml"
+  vars:
+    antlet_to_wait_for: "{{ item.dname }}" 
+    state_name: "Stopped"
+  with_items: "{{ tf_nodes.outputs.antlet.value }}"
+
+- include_tasks: "tf_module.yml"
+  vars:
+    state: "absent"

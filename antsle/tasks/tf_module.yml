@@ -1,0 +1,12 @@
+- terraform:
+    project_path: "{{ terraform_dir }}"
+    force_init: true
+    state: "{{ state }}"
+    variables:
+        token: "{{ antsle_token }}"
+        name: "{{ instance_base_name }}"
+        start_ip_octet: "{{ instance_start_octect }}"
+        instance_count: "{{ instance_count }}"
+        ram: "{{ instance_ram }}"
+        cpu: "{{ instance_cpu }}"
+  register: tf_nodes

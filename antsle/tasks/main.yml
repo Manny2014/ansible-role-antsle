@@ -3,7 +3,8 @@
 - debug:
     msg: "Running Antsle Role"
 
-- include_tasks: setup.yml
-
 - include_tasks: provision.yml
   when: state == "present"
+
+- include_tasks: deprovision.yml
+  when: state == "absent"

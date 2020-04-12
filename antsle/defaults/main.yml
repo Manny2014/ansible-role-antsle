@@ -1,10 +1,16 @@
 ---
 # defaults file for antsle
 state: absent
+instance_base_name: k8s-master
+instance_start_octect: 10
+instance_count: 3
+instance_ram: 6144
+instance_cpu: 1
+
 antsle_api_url: "http://192.168.1.122:3000/api"
 antsle_token: "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicm9vdCJ9.RtGAs4ARYdZqbSdgYXv7FNv3sTGJOkylirxs9HRSFCM9alcFJD0NqwMMGTzb6bG5r9Q-vHY13g5GPaVH8G0aLA"
 antsle_tmp_dir: "{{ playbook_dir }}/.antsle"
-terraform_dir: "{{ antsle_tmp_dir }}/terraform"
+terraform_dir: "{{ antsle_tmp_dir }}/terraform/{{ instance_base_name }}"
 
 # TODO: MOVE OUT OF HERE
 antlet_nic_macs:
